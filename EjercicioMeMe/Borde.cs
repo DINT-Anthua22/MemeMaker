@@ -16,12 +16,15 @@ namespace EjercicioMeMe
             {
                 if ((bool)value)
                 {
-
+                    return 6;
                 }
-                return 6;
+                else return 0;
+
+
             }
-           
             else return 0;
+           
+           
             
         }
 

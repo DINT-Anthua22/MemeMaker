@@ -8,52 +8,66 @@
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
         <local:Borde x:Key="conversor"></local:Borde>
+        <Style TargetType="{x:Type TextBlock}" x:Key="Textos">
+            <Setter Property="FontFamily" Value="Impact"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+
+        </Style>
     </Window.Resources>
-    <StackPanel>
-        <Grid Margin="0,8,0,0">
+    <ScrollViewer  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <Grid Margin="0,8,0,0">
 
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition  Width="7*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition  Width="7*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0">Texto superior</TextBlock>
-            <TextBox Grid.Row="0"  x:Name="TextoSuperiorTextBlock" Text="hola" Grid.Column="1"></TextBox>
-            <TextBlock Grid.Row="1" Grid.Column="0">Texto inferior</TextBlock>
-            <TextBox Grid.Row="1" x:Name="TextoInferiorTextBlock" Text="Peer" Grid.Column="1"></TextBox>
-            <TextBlock Grid.Row="2" Grid.Column="0">Alto</TextBlock>
-            <Slider Maximum="1000" x:Name="AltoSlider" Value="300" Minimum="100" Grid.Row="2" Grid.Column="1"></Slider>
-            <TextBlock Grid.Row="3" Grid.Column="0">Ancho</TextBlock>
-            <Slider Maximum="1000" x:Name="AnchoSlider" Value="500" Minimum="100" Grid.Row="3" Grid.Column="1"></Slider>
-            <TextBlock Grid.Row="4" Grid.Column="0">Imagen</TextBlock>
-            <TextBox Grid.Row="4" x:Name="ImagenTextBox" Grid.Column="1"></TextBox>
-            <TextBlock Grid.Row="5" Grid.Column="0">Borde</TextBlock>
-            <CheckBox Grid.Row="5" IsChecked="{Binding ElementName=BordeBorder,Path=BorderThickness, Converter={StaticResource conversor}}" Grid.Column="1" x:Name="BordeCheckBox"></CheckBox>
-        </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-               
-                <ColumnDefinition Width="685*"/>
-            </Grid.ColumnDefinitions>
-            <Border x:Name="BordeBorder" Width="{Binding ElementName=AnchoSlider, Path=Value}" Height="{Binding ElementName=AltoSlider, Path=Value}" BorderBrush="Black" Grid.Column="1" Margin="4,0,0,0" HorizontalAlignment="Center" >
-                <Grid>
-                    <Image Source="{Binding ElementName=ImagenTextBox, Path=Text,UpdateSourceTrigger=PropertyChanged}" Stretch="Fill"></Image>
-                    <TextBlock TextAlignment="Center" FontSize="30"  Text="{Binding ElementName=TextoSuperiorTextBlock, Path=Text}" FontFamily="Impact" VerticalAlignment="Top"></TextBlock>
-                    <TextBlock Text="{Binding ElementName=TextoInferiorTextBlock, Path=Text}" VerticalAlignment="Bottom" TextAlignment="Center" FontSize="30" FontFamily="Impact"></TextBlock>
-                </Grid>
+                <TextBlock Grid.Row="0" Grid.Column="0">Texto superior</TextBlock>
+                <TextBox Grid.Row="0"  x:Name="TextoSuperiorTextBlock" Text="Texto Superior" Grid.Column="1"></TextBox>
+                <TextBlock Grid.Row="1" Grid.Column="0">Texto inferior</TextBlock>
+                <TextBox Grid.Row="1" x:Name="TextoInferiorTextBlock" Text="Texto Inferior" Grid.Column="1"></TextBox>
+                <TextBlock Grid.Row="2" Grid.Column="0">Alto</TextBlock>
+                <Slider Maximum="1000" x:Name="AltoSlider" Value="300" Minimum="100" Grid.Row="2" Grid.Column="1"></Slider>
+                <TextBlock Grid.Row="3" Grid.Column="0">Ancho</TextBlock>
+                <Slider Maximum="1000" x:Name="AnchoSlider" Value="500" Minimum="100" Grid.Row="3" Grid.Column="1"></Slider>
+                <TextBlock Grid.Row="4" Grid.Column="0">Imagen</TextBlock>
+                <TextBox Grid.Row="4" x:Name="ImagenTextBox" Grid.Column="1"></TextBox>
+                <TextBlock Grid.Row="5" Grid.Column="0">Borde</TextBlock>
+                <CheckBox Grid.Row="5" Grid.Column="1" x:Name="BordeCheckBox"></CheckBox>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
 
-            </Border>
+                    <ColumnDefinition Width="685*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border x:Name="BordeBorder" Width="{Binding ElementName=AnchoSlider, Path=Value}" Height="{Binding ElementName=AltoSlider, Path=Value}" BorderThickness="{Binding ElementName=BordeCheckBox, Path=IsChecked, Converter={StaticResource conversor}}" BorderBrush="Black" Grid.Column="1" Margin="4,8,0,0" HorizontalAlignment="Center" Background="Aquamarine">
+                    <Grid>
+                        <Image Source="{Binding ElementName=ImagenTextBox, Path=Text,UpdateSourceTrigger=PropertyChanged}" Stretch="Fill"></Image>
+                        <TextBlock Text="{Binding ElementName=TextoSuperiorTextBlock, Path=Text}" Style="{StaticResource Textos}" VerticalAlignment="Top"></TextBlock>
+                        <TextBlock Text="{Binding ElementName=TextoInferiorTextBlock, Path=Text}" VerticalAlignment="Bottom"  Style="{StaticResource Textos}"></TextBlock>
+                    </Grid>
+
+                </Border>
 
 
-        </Grid>
 
-    </StackPanel>
+
+            </Grid>
+
+        </StackPanel>
+
+    </ScrollViewer>
+    
 </Window>
