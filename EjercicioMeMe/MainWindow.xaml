@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EjercicioMeMe"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MemeMaker" Height="450" Width="800">
     <Window.Resources>
         <local:Borde x:Key="conversor"></local:Borde>
         <Style TargetType="{x:Type TextBlock}" x:Key="Textos">
@@ -15,6 +15,7 @@
             <Setter Property="TextAlignment" Value="Center"/>
 
         </Style>
+        
     </Window.Resources>
     <ScrollViewer  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <StackPanel>
